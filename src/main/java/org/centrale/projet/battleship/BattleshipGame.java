@@ -12,6 +12,6 @@ public class BattleshipGame {
             gameBoard.evaluateGuessAndGetTarjet(userCoordinates);
             gameBoard.printGameBoard();
         }
-        System.out.println("Test Rama master Git");
+        System.out.println("Test Rama master Git ");
     }   
 }
