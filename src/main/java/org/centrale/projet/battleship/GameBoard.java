@@ -137,18 +137,18 @@ public class GameBoard {
                     this.setGameBoard(location[0]+1,location[1], this.ship);
                     placedCruisers++;
                 }
-                else if((location[0]-1)<this.getGameBoardLength() && orientation == 1 && this.gameBoard[location[0]-1][location[1]] == water){
+                else if(orientation == 1 && this.gameBoard[location[0]-1][location[1]] == water){
                     this.setGameBoard(location[0],location[1], this.ship);
                     this.setGameBoard(location[0]-1,location[1], this.ship);
                     placedCruisers++;
                 }
-                else if((location[1]+1)<this.getGameBoardLength() && orientation == 2 && this.gameBoard[location[0]][location[1]+1] == water){
+                else if(orientation == 2 && this.gameBoard[location[0]][location[1]+1] == water){
+                    this.setGameBoard(location[0],location[1], this.ship);
                     this.setGameBoard(location[0],location[1]+1, this.ship);
-                    this.setGameBoard(location[0-1],location[1]+1, this.ship);
                     placedCruisers++;
                 }
-                else if((location[1]-1)<this.getGameBoardLength() && orientation == 3 && this.gameBoard[location[0]][location[1]-1] == water){
-                    this.setGameBoard(location[0],location[1]-1, this.ship);
+                else if(orientation == 3 && this.gameBoard[location[0]][location[1]-1] == water){
+                    this.setGameBoard(location[0],location[1], this.ship);
                     this.setGameBoard(location[0],location[1]-1, this.ship);
                     placedCruisers++;
                 }
