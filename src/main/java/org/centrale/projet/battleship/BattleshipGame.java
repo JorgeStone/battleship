@@ -1,9 +1,8 @@
 package org.centrale.projet.battleship;
-import java.lang.reflect.Array;
 
 public class BattleshipGame {
     public static void main(String[] args) {
-        GameBoard gameBoard = new GameBoard(3, '-', 's', 'x', 'o', 3);
+        GameBoard gameBoard = new GameBoard(5, '-', 's', 'x', 'o', 3, 2);
         //GameBoard gameBoard = new GameBoard();
         gameBoard.createGameBoard();
         gameBoard.placeShips();

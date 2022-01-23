@@ -12,6 +12,7 @@ public class GameBoard {
     private int shipNumber;
     private char[][] gameBoard;
     private int undetectedShipNumber;
+    private int cruiserNumber;
 
     public GameBoard(){
         this.gameBoardLength = 4;
@@ -21,10 +22,11 @@ public class GameBoard {
         this.miss = 'o';
         this.shipNumber = 3;
         this.gameBoard = new char[gameBoardLength][gameBoardLength];
-        this.undetectedShipNumber = this.shipNumber;
+        this.cruiserNumber = 2;
+        this.undetectedShipNumber = this.shipNumber + this.cruiserNumber*2;
     }  
     
-    public GameBoard(int gameBoardLength, char water, char ship, char hit, char miss, int shipNumber) {
+    public GameBoard(int gameBoardLength, char water, char ship, char hit, char miss, int shipNumber, int cruiserNumber) {
         this.gameBoardLength = gameBoardLength;
         this.water = water;
         this.ship = ship;
@@ -32,7 +34,8 @@ public class GameBoard {
         this.miss = miss;
         this.shipNumber = shipNumber;
         this.gameBoard = new char[gameBoardLength][gameBoardLength];
-        this.undetectedShipNumber = this.shipNumber;
+        this.cruiserNumber=cruiserNumber;
+        this.undetectedShipNumber = this.shipNumber + this.cruiserNumber*2;
     }
 
     public int getGameBoardLength() {
@@ -67,6 +70,10 @@ public class GameBoard {
         return undetectedShipNumber;
     }
 
+    public int getCruiserNumber() {
+        return cruiserNumber;
+    }
+
     public void setGameBoardLength(int gameBoardLength) {
         this.gameBoardLength = gameBoardLength;
     }
@@ -98,6 +105,10 @@ public class GameBoard {
     public void setUndetectedShipNumber(int undetectedShipNumber) {
         this.undetectedShipNumber = undetectedShipNumber;
     }
+
+    public void setCruiserNumber(int cruiserNumber) {
+        this.cruiserNumber = cruiserNumber;
+    }
     
     public void createGameBoard(){
         for(char[] row : this.gameBoard){
@@ -112,6 +123,35 @@ public class GameBoard {
             if(this.gameBoard[location[0]][location[1]] == water){
                 this.setGameBoard(location[0],location[1], this.ship);
                 placedShips++;
+            }
+        }
+        
+        Random random = new Random();
+        int orientation = random.nextInt(4);
+        int placedCruisers = 0;
+        while(placedCruisers<this.getCruiserNumber()){
+            int[] location = generateShipCoordinates();
+            if(this.gameBoard[location[0]][location[1]] == water && this.gameBoard[location[0]][location[1]] != this.getGameBoardLength()&& this.gameBoard[location[0]][location[1]] != 0){
+                if(orientation == 0 && this.gameBoard[location[0]+1][location[1]] == water){
+                    this.setGameBoard(location[0],location[1], this.ship);
+                    this.setGameBoard(location[0]+1,location[1], this.ship);
+                    placedCruisers++;
+                }
+                else if((location[0]-1)<this.getGameBoardLength() && orientation == 1 && this.gameBoard[location[0]-1][location[1]] == water){
+                    this.setGameBoard(location[0],location[1], this.ship);
+                    this.setGameBoard(location[0]-1,location[1], this.ship);
+                    placedCruisers++;
+                }
+                else if((location[1]+1)<this.getGameBoardLength() && orientation == 2 && this.gameBoard[location[0]][location[1]+1] == water){
+                    this.setGameBoard(location[0],location[1]+1, this.ship);
+                    this.setGameBoard(location[0-1],location[1]+1, this.ship);
+                    placedCruisers++;
+                }
+                else if((location[1]-1)<this.getGameBoardLength() && orientation == 3 && this.gameBoard[location[0]][location[1]-1] == water){
+                    this.setGameBoard(location[0],location[1]-1, this.ship);
+                    this.setGameBoard(location[0],location[1]-1, this.ship);
+                    placedCruisers++;
+                }
             }
         }
     }
