@@ -65,7 +65,7 @@ public class GameBoardTest {
     @Test
     public void testGenerateShipCoordinates() {
         System.out.println("generateShipCoordinates");
-        GameBoard gameBoard = new GameBoard(5,'w', 's', 'h', 'm', 4, 1);
+        GameBoard gameBoard = new GameBoard(7,'w', 's', 'h', 'm', 4, 1);
         int[] coordinates_1 = new int[2];
         int[] coordinates_2 = new int[2];
         int[] coordinates_3 = new int[2];

@@ -13,7 +13,8 @@ public class GameBoard {
     private char[][] gameBoard;
     private int undetectedShipNumber;
     private int cruiserNumber;
-
+    
+    
     public GameBoard(){
         this.gameBoardLength = 4;
         this.water = '-';
@@ -126,12 +127,12 @@ public class GameBoard {
             }
         }
         
-        Random random = new Random();
-        int orientation = random.nextInt(4);
+        int orientation = new Random().nextInt(4);
+        
         int placedCruisers = 0;
         while(placedCruisers<this.getCruiserNumber()){
             int[] location = generateShipCoordinates();
-            if(this.gameBoard[location[0]][location[1]] == water && this.gameBoard[location[0]][location[1]] != this.getGameBoardLength()&& this.gameBoard[location[0]][location[1]] != 0){
+            if(this.gameBoard[location[0]][location[1]] == water && (location[0]-1) > 0 && (location[0]+1) < this.getGameBoardLength() && (location[1]-1) > 0 && (location[1]+1) < this.getGameBoardLength()){
                 if(orientation == 0 && this.gameBoard[location[0]+1][location[1]] == water){
                     this.setGameBoard(location[0],location[1], this.ship);
                     this.setGameBoard(location[0]+1,location[1], this.ship);
