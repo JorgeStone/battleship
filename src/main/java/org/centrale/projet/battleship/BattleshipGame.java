@@ -2,7 +2,7 @@ package org.centrale.projet.battleship;
 
 public class BattleshipGame {
     public static void main(String[] args) {
-        GameBoard gameBoard = new GameBoard(5, '-', 's', 'x', 'o', 3, 2);
+        GameBoard gameBoard = new GameBoard(6, '-', 's', 'x', 'o', 4, 1);
         //GameBoard gameBoard = new GameBoard();
         gameBoard.createGameBoard();
         gameBoard.placeShips();
@@ -12,5 +12,6 @@ public class BattleshipGame {
             gameBoard.evaluateGuessAndGetTarjet(userCoordinates);
             gameBoard.printGameBoard();
         }
+        System.out.println("Test Nueva Rama Git");
     }   
 }
